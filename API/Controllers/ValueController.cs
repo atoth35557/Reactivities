@@ -2,7 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Domain;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Persistence;
 
 namespace API.Controllers
 {
@@ -10,47 +13,28 @@ namespace API.Controllers
     [ApiController]
     public class ValueController : ControllerBase
     {
-        public ValueController()
+        private readonly DataContext _context;
+        public ValueController(DataContext context)
         {
+            _context = context;
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<string>> GetTModels()
+        public async Task<ActionResult<IEnumerable<Value>>> GetTModels()
         {
-            return new string [] {"value1","value2"};
+            var values = await _context.Values.ToListAsync();
+            return Ok(values);
         }
 
         [HttpGet("{id}")]
-        public ActionResult<string> GetTModelById(int id)
+        public async Task<ActionResult<Value>> GetTModelById(int id)
         {
-            return "value";
+            var result = await _context.Values.FindAsync(id);
+
+            if(result == null){
+                return NotFound();
+            }
+            return Ok(result);
         }
-
-        // [HttpPost("")]
-        // public async Task<ActionResult<TModel>> PostTModel(TModel model)
-        // {
-        //     // TODO: Your code here
-        //     await Task.Yield();
-
-        //     return null;
-        // }
-
-        // [HttpPut("{id}")]
-        // public async Task<IActionResult> PutTModel(int id, TModel model)
-        // {
-        //     // TODO: Your code here
-        //     await Task.Yield();
-
-        //     return NoContent();
-        // }
-
-        // [HttpDelete("{id}")]
-        // public async Task<ActionResult<TModel>> DeleteTModelById(int id)
-        // {
-        //     // TODO: Your code here
-        //     await Task.Yield();
-
-        //     return null;
-        // }
     }
 }
