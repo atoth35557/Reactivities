@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "IAFQC2mwqtyJ6dAxQqlgVU1F7uoQZGj5L1G+bmuYkqk7pNqmjk44jUiEb4g+Wepdha0TL8yhkbBuQ1DM33Sk9w==",
+  "success": true,
+  "projectFilePath": "/Users/akostoth/Projects/asp .net core + react/socialnetwork/Persistence/Persistence.csproj",
+  "expectedPackageFiles": [
+    "/Users/akostoth/.nuget/packages/microsoft.netcore.platforms/1.1.0/microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "/Users/akostoth/.nuget/packages/netstandard.library/2.0.3/netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}
