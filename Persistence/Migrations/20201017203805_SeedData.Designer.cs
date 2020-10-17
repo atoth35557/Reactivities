@@ -8,8 +8,8 @@ using Persistence;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20201017193644_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20201017203805_SeedData")]
+    partial class SeedData
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,7 +28,24 @@ namespace Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("MyProperty");
+                    b.ToTable("Values");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "value one"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "value two"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "value three"
+                        });
                 });
 #pragma warning restore 612, 618
         }

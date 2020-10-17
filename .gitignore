@@ -48,3 +48,8 @@ Thumbs.db
 *.mov
 *.wmv
 
+bin
+obj
+.vscode
+appsettings.json
+*.db

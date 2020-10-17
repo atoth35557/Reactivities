@@ -9,6 +9,16 @@ namespace Persistence
         public DataContext(DbContextOptions options):base(options)
         {
         }
-        public DbSet<Value> MyProperty { get; set; }
+        public DbSet<Value> Values { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.Entity<Value>()
+                   .HasData(
+                       new Value{Id = 1, Name = "value one"},
+                       new Value{Id = 2, Name = "value two"},
+                       new Value{Id = 3, Name = "value three"}
+                   );
+        }
     }
 }
