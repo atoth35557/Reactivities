@@ -1,11 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "WMg2J/yFtOCczU+7nfGol8XNFi00fv59VWNK0rQutN9UDAmNA4wtv4bnkjgz5FOYpieItw+EXsuZ7bSJU2AbiQ==",
+  "dgSpecHash": "fOu41QcJ9EJWFk1+xX7LZ7q6z0tC10B88SUGcU8rMPnzrIRV+EDQAknl4MM3vF15p3jIInZHm7KiovWaNKC+1g==",
   "success": true,
   "projectFilePath": "/Users/akostoth/Projects/asp .net core + react/socialnetwork/Domain/Domain.csproj",
-  "expectedPackageFiles": [
-    "/Users/akostoth/.nuget/packages/microsoft.netcore.platforms/1.1.0/microsoft.netcore.platforms.1.1.0.nupkg.sha512",
-    "/Users/akostoth/.nuget/packages/netstandard.library/2.0.3/netstandard.library.2.0.3.nupkg.sha512"
-  ],
+  "expectedPackageFiles": [],
   "logs": []
 }

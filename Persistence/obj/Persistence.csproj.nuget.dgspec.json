@@ -4,6 +4,56 @@
     "/Users/akostoth/Projects/asp .net core + react/socialnetwork/Persistence/Persistence.csproj": {}
   },
   "projects": {
+    "/Users/akostoth/Projects/asp .net core + react/socialnetwork/Domain/Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/akostoth/Projects/asp .net core + react/socialnetwork/Domain/Domain.csproj",
+        "projectName": "Domain",
+        "projectPath": "/Users/akostoth/Projects/asp .net core + react/socialnetwork/Domain/Domain.csproj",
+        "packagesPath": "/Users/akostoth/.nuget/packages/",
+        "outputPath": "/Users/akostoth/Projects/asp .net core + react/socialnetwork/Domain/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/akostoth/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "NETStandard.Library": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.401/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
     "/Users/akostoth/Projects/asp .net core + react/socialnetwork/Persistence/Persistence.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -17,14 +67,18 @@
           "/Users/akostoth/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
-          "netstandard2.0"
+          "netstandard2.1"
         ],
         "sources": {
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "netstandard2.0": {
-            "projectReferences": {}
+          "netstandard2.1": {
+            "projectReferences": {
+              "/Users/akostoth/Projects/asp .net core + react/socialnetwork/Domain/Domain.csproj": {
+                "projectPath": "/Users/akostoth/Projects/asp .net core + react/socialnetwork/Domain/Domain.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -34,13 +88,15 @@
         }
       },
       "frameworks": {
-        "netstandard2.0": {
+        "netstandard2.1": {
           "dependencies": {
-            "NETStandard.Library": {
-              "suppressParent": "All",
+            "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[2.0.3, )",
-              "autoReferenced": true
+              "version": "[3.1.7, )"
+            },
+            "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[3.1.7, )"
             }
           },
           "imports": [
@@ -53,6 +109,11 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "frameworkReferences": {
+            "NETStandard.Library": {
+              "privateAssets": "all"
+            }
+          },
           "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.401/RuntimeIdentifierGraph.json"
         }
       }
