@@ -53,3 +53,4 @@ obj
 .vscode
 appsettings.json
 *.db
+*.pdb

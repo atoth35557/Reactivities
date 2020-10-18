@@ -23,6 +23,7 @@ namespace API
                 try{
                     var context = scope.ServiceProvider.GetRequiredService<DataContext>();
                     context.Database.Migrate();
+                    Seed.SeedData(context);
                }
                 catch(Exception e){
                     var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();

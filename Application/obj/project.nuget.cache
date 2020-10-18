@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "5e8P1yAMSMn8lYduJDsiZRCC1DZInro0/2pWi7HnVIso7FcV7kcdixNZLjE9bHJS3qqo/5is/EAh5wbdh5rKXQ==",
+  "dgSpecHash": "1MVlsFGTdWaZJ1/V/K45Jx0SDAqW+0Q1fufjrV0TP4Mlfb0aScPX6zFuTkNpwHnbr2NIm8mQxCGwElCnceL0OQ==",
   "success": true,
   "projectFilePath": "/Users/akostoth/Projects/asp .net core + react/socialnetwork/Application/Application.csproj",
   "expectedPackageFiles": [
+    "/Users/akostoth/.nuget/packages/mediatr/9.0.0/mediatr.9.0.0.nupkg.sha512",
+    "/Users/akostoth/.nuget/packages/mediatr.extensions.microsoft.dependencyinjection/9.0.0/mediatr.extensions.microsoft.dependencyinjection.9.0.0.nupkg.sha512",
     "/Users/akostoth/.nuget/packages/microsoft.bcl.asyncinterfaces/1.1.1/microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "/Users/akostoth/.nuget/packages/microsoft.bcl.hashcode/1.1.0/microsoft.bcl.hashcode.1.1.0.nupkg.sha512",
     "/Users/akostoth/.nuget/packages/microsoft.data.sqlite.core/3.1.7/microsoft.data.sqlite.core.3.1.7.nupkg.sha512",
