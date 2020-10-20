@@ -2,25 +2,66 @@ import React, { useState, useEffect, Fragment } from "react";
 import axios from "axios";
 import { Container } from "semantic-ui-react";
 import { IActivity } from "../models/activity";
-import Navbar from "../../features/nav/navbar";
-import { ActivityDashboar } from '../../features/Activities/dashboard/ActivityDashboar';
+import { ActivityDashboar } from "../../features/Activities/dashboard/ActivityDashboar";
+import { NavBar } from "../../features/nav/NavBar";
 
 const App = () => {
   const [activities, setActivities] = useState<IActivity[]>([]);
+  const [selectedActivity, setSelectedActivity] = useState<IActivity | null>(
+    null
+  );
+  const [editMode, setEditMode] = useState(false);
+
+  const handleSelectedActivity = (id: string) => {
+    setSelectedActivity(activities.filter((a) => a.id === id)[0]);
+    setEditMode(false);
+  };
+  const handleCreateActivity = (activity: IActivity) => {
+    setActivities([...activities, activity]);
+    setSelectedActivity(activity);
+    setEditMode(false);
+  };
+  const handleEditActivity = (activity: IActivity) => {
+    setActivities([
+      ...activities.filter((a) => a.id !== activity.id),
+      activity,
+    ]);
+    setSelectedActivity(activity);
+    setEditMode(false);
+  };
+
+  const handleOpenCreateForm = () => {
+    setSelectedActivity(null);
+    setEditMode(true);
+  };
 
   useEffect(() => {
     axios
       .get<IActivity[]>("http://localhost:5000/api/activities")
       .then((response) => {
-        setActivities(response.data);
+        let activities:IActivity[] = []
+        response.data.forEach(activity => {
+          activity.date = activity.date.split('.')[0];
+          activities.push(activity);
+        })
+        setActivities(activities);
       });
   }, []);
 
   return (
     <Fragment>
-      <Navbar />
-      <Container style={{marginTop:'7em'}}>
-       <ActivityDashboar activities={activities}/>
+      <NavBar openCreateForm={handleOpenCreateForm} />
+      <Container style={{ marginTop: "7em" }}>
+        <ActivityDashboar
+          activities={activities}
+          selectActivity={handleSelectedActivity}
+          selectedActivity={selectedActivity}
+          editMode={editMode}
+          setEditMode={setEditMode}
+          setSelectedActivity={setSelectedActivity}
+          createActivity={handleCreateActivity}
+          editActivity={handleEditActivity}
+        />
       </Container>
     </Fragment>
   );
