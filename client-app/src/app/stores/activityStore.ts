@@ -8,7 +8,7 @@ import {
 } from "mobx";
 import { createContext, SyntheticEvent } from "react";
 import agent from "../api/agent";
-import { IActivity } from "../models/activity";
+import { IActivity } from '../models/activity';
 
 configure({ enforceActions: "always" });
 
@@ -24,9 +24,20 @@ class ActivityStore {
   @observable target = "";
 
   @computed get activitiesByDate() {
-    return Array.from(this.activitiesRegistry.values())
+    return this.groupActivitiesByDate(
+      Array.from(this.activitiesRegistry.values())
+    );
+  }
+
+  groupActivitiesByDate(activities: IActivity[]) {
+    const sortedActivities = activities
       .slice()
       .sort((a, b) => Date.parse(a.date) - Date.parse(b.date));
+    return Object.entries(sortedActivities.reduce((activities, activity)=>{
+      const date = activity.date.split('T')[0];
+      activities[date] = activities[date] ? [...activities[date],activity]: [activity];
+      return activities;
+    },{} as {[key: string]: IActivity[]}));
   }
 
   @action cancelSelectedActivity = () => {
@@ -73,8 +84,8 @@ class ActivityStore {
   };
 
   @action clearActivity = () => {
-    this.activity = null
-  }
+    this.activity = null;
+  };
 
   @action loadActivity = async (id: string) => {
     let activity = this.getActivity(id);
@@ -113,6 +124,8 @@ class ActivityStore {
       runInAction(() => {
         this.loadingInitial = false;
       });
+      console.log(this.groupActivitiesByDate(activities));
+      
     } catch (error) {
       runInAction(() => {
         this.loadingInitial = false;
