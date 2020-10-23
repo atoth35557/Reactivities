@@ -1,37 +1,37 @@
-import React, { useEffect, Fragment, useContext } from "react";
+import React, { Fragment } from "react";
 import { Container } from "semantic-ui-react";
 import ActivityDashboar from "../../features/Activities/dashboard/ActivityDashboar";
 import NavBar from "../../features/nav/NavBar";
-import { LoadingComponent } from "./LoadingComponent";
-import ActivityStore from "../stores/activityStore";
 import { observer } from "mobx-react-lite";
+import { Route, withRouter, RouteComponentProps } from "react-router-dom";
+import HomePage from "../../features/Home/HomePage";
+import ActivityForm from "../../features/Activities/form/ActivityForm";
+import ActivityDetails from "../../features/Activities/Details/ActivityDetails";
 
-const App = () => {
-  const activityStore = useContext(ActivityStore);
-
-  useEffect(() => {
-    activityStore.loadActivities();
-  }, [activityStore]);
-
-  if (activityStore.loadingInitial) {
-    return (
-      <Fragment>
-        <NavBar />
-        <Container style={{ marginTyp: "7em" }}>
-          <LoadingComponent content="Loading activities..." />
-        </Container>
-      </Fragment>
-    );
-  }
+const App: React.FC<RouteComponentProps> = ({ location }) => {
 
   return (
     <Fragment>
-      <NavBar />
-      <Container style={{ marginTop: "7em" }}>
-        <ActivityDashboar />
-      </Container>
+      <Route exact path="/" component={HomePage} />
+      <Route
+        path={"/(.+)"}
+        render={() => (
+          <Fragment>
+            <NavBar />
+            <Container style={{ marginTop: "7em" }}>
+              <Route exact path="/activities" component={ActivityDashboar} />
+              <Route path="/activities/:id" component={ActivityDetails} />
+              <Route
+                key={location.key}
+                path={["/createActivity", "/manage/:id"]}
+                component={ActivityForm}
+              />
+            </Container>
+          </Fragment>
+        )}
+      />
     </Fragment>
   );
 };
 
-export default observer(App);
+export default withRouter(observer(App));
