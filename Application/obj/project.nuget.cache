@@ -1,9 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "1MVlsFGTdWaZJ1/V/K45Jx0SDAqW+0Q1fufjrV0TP4Mlfb0aScPX6zFuTkNpwHnbr2NIm8mQxCGwElCnceL0OQ==",
+  "dgSpecHash": "HlGe9IN8GigTiFN43wNFLAcf0RCthLJQBRMJG7b1xVgsTeIz+KyhAvyXQzo+CceZpfE26sILZYvgQaOB7+ryIw==",
   "success": true,
   "projectFilePath": "/Users/akostoth/Projects/asp .net core + react/socialnetwork/Application/Application.csproj",
   "expectedPackageFiles": [
+    "/Users/akostoth/.nuget/packages/fluentvalidation/9.1.1/fluentvalidation.9.1.1.nupkg.sha512",
+    "/Users/akostoth/.nuget/packages/fluentvalidation.aspnetcore/9.1.1/fluentvalidation.aspnetcore.9.1.1.nupkg.sha512",
+    "/Users/akostoth/.nuget/packages/fluentvalidation.dependencyinjectionextensions/9.1.1/fluentvalidation.dependencyinjectionextensions.9.1.1.nupkg.sha512",
     "/Users/akostoth/.nuget/packages/mediatr/9.0.0/mediatr.9.0.0.nupkg.sha512",
     "/Users/akostoth/.nuget/packages/mediatr.extensions.microsoft.dependencyinjection/9.0.0/mediatr.extensions.microsoft.dependencyinjection.9.0.0.nupkg.sha512",
     "/Users/akostoth/.nuget/packages/microsoft.bcl.asyncinterfaces/1.1.1/microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
@@ -31,17 +34,12 @@
     "/Users/akostoth/.nuget/packages/sqlitepclraw.bundle_e_sqlite3/2.0.2/sqlitepclraw.bundle_e_sqlite3.2.0.2.nupkg.sha512",
     "/Users/akostoth/.nuget/packages/sqlitepclraw.core/2.0.2/sqlitepclraw.core.2.0.2.nupkg.sha512",
     "/Users/akostoth/.nuget/packages/sqlitepclraw.lib.e_sqlite3/2.0.2/sqlitepclraw.lib.e_sqlite3.2.0.2.nupkg.sha512",
-    "/Users/akostoth/.nuget/packages/sqlitepclraw.provider.e_sqlite3/2.0.2/sqlitepclraw.provider.e_sqlite3.2.0.2.nupkg.sha512",
-    "/Users/akostoth/.nuget/packages/system.buffers/4.5.1/system.buffers.4.5.1.nupkg.sha512",
+    "/Users/akostoth/.nuget/packages/sqlitepclraw.provider.dynamic_cdecl/2.0.2/sqlitepclraw.provider.dynamic_cdecl.2.0.2.nupkg.sha512",
     "/Users/akostoth/.nuget/packages/system.collections.immutable/1.7.1/system.collections.immutable.1.7.1.nupkg.sha512",
     "/Users/akostoth/.nuget/packages/system.componentmodel.annotations/4.7.0/system.componentmodel.annotations.4.7.0.nupkg.sha512",
     "/Users/akostoth/.nuget/packages/system.diagnostics.diagnosticsource/4.7.1/system.diagnostics.diagnosticsource.4.7.1.nupkg.sha512",
-    "/Users/akostoth/.nuget/packages/system.memory/4.5.4/system.memory.4.5.4.nupkg.sha512",
-    "/Users/akostoth/.nuget/packages/system.numerics.vectors/4.5.0/system.numerics.vectors.4.5.0.nupkg.sha512",
-    "/Users/akostoth/.nuget/packages/system.runtime.compilerservices.unsafe/4.7.1/system.runtime.compilerservices.unsafe.4.7.1.nupkg.sha512",
-    "/Users/akostoth/.nuget/packages/system.text.encodings.web/4.7.0/system.text.encodings.web.4.7.0.nupkg.sha512",
-    "/Users/akostoth/.nuget/packages/system.text.json/4.7.1/system.text.json.4.7.1.nupkg.sha512",
-    "/Users/akostoth/.nuget/packages/system.threading.tasks.extensions/4.5.4/system.threading.tasks.extensions.4.5.4.nupkg.sha512"
+    "/Users/akostoth/.nuget/packages/system.memory/4.5.3/system.memory.4.5.3.nupkg.sha512",
+    "/Users/akostoth/.nuget/packages/system.text.json/4.7.1/system.text.json.4.7.1.nupkg.sha512"
   ],
   "logs": []
 }
