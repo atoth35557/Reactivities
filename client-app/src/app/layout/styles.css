@@ -11,6 +11,9 @@ body {
   ) !important;
 }
 
+.rw-input{
+  border: none !important;
+}
 /*home page styles*/
 
 .masthead {
