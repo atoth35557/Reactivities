@@ -1,9 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "IzuOKOkaVH9Q7wfY/ZAK0Py7FBzxmdB9DXN1SAhLIYz8/ihV2IZdb3Jbqw6StbCZT52d+QLV0JB8TJgiFAbMrA==",
+  "dgSpecHash": "l3l6ruyUzEoDfdoBiCVRNQ6fkAaAcV9pkZSvbM21u137L8Xybt0AputTrJKUaQ9kYJHbEh9YjgvwE6G+HLqfGA==",
   "success": true,
   "projectFilePath": "/Users/akostoth/Projects/asp .net core + react/socialnetwork/Persistence/Persistence.csproj",
   "expectedPackageFiles": [
+    "/Users/akostoth/.nuget/packages/microsoft.aspnetcore.cryptography.internal/3.1.7/microsoft.aspnetcore.cryptography.internal.3.1.7.nupkg.sha512",
+    "/Users/akostoth/.nuget/packages/microsoft.aspnetcore.cryptography.keyderivation/3.1.7/microsoft.aspnetcore.cryptography.keyderivation.3.1.7.nupkg.sha512",
+    "/Users/akostoth/.nuget/packages/microsoft.aspnetcore.identity.entityframeworkcore/3.1.7/microsoft.aspnetcore.identity.entityframeworkcore.3.1.7.nupkg.sha512",
     "/Users/akostoth/.nuget/packages/microsoft.bcl.asyncinterfaces/1.1.1/microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "/Users/akostoth/.nuget/packages/microsoft.bcl.hashcode/1.1.0/microsoft.bcl.hashcode.1.1.0.nupkg.sha512",
     "/Users/akostoth/.nuget/packages/microsoft.data.sqlite.core/3.1.7/microsoft.data.sqlite.core.3.1.7.nupkg.sha512",
@@ -22,6 +25,8 @@
     "/Users/akostoth/.nuget/packages/microsoft.extensions.dependencyinjection/3.1.7/microsoft.extensions.dependencyinjection.3.1.7.nupkg.sha512",
     "/Users/akostoth/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/3.1.7/microsoft.extensions.dependencyinjection.abstractions.3.1.7.nupkg.sha512",
     "/Users/akostoth/.nuget/packages/microsoft.extensions.dependencymodel/3.1.3/microsoft.extensions.dependencymodel.3.1.3.nupkg.sha512",
+    "/Users/akostoth/.nuget/packages/microsoft.extensions.identity.core/3.1.7/microsoft.extensions.identity.core.3.1.7.nupkg.sha512",
+    "/Users/akostoth/.nuget/packages/microsoft.extensions.identity.stores/3.1.7/microsoft.extensions.identity.stores.3.1.7.nupkg.sha512",
     "/Users/akostoth/.nuget/packages/microsoft.extensions.logging/3.1.7/microsoft.extensions.logging.3.1.7.nupkg.sha512",
     "/Users/akostoth/.nuget/packages/microsoft.extensions.logging.abstractions/3.1.7/microsoft.extensions.logging.abstractions.3.1.7.nupkg.sha512",
     "/Users/akostoth/.nuget/packages/microsoft.extensions.options/3.1.7/microsoft.extensions.options.3.1.7.nupkg.sha512",

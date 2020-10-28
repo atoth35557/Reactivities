@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "HlGe9IN8GigTiFN43wNFLAcf0RCthLJQBRMJG7b1xVgsTeIz+KyhAvyXQzo+CceZpfE26sILZYvgQaOB7+ryIw==",
+  "dgSpecHash": "t4jpPTbjYHu62DVd0qPSOVVrEWln7phHkVQu9s6Q2iTk6V/EHwAPIzdadkFK+KwQS451wG/jTTIQD+DaVtf49Q==",
   "success": true,
   "projectFilePath": "/Users/akostoth/Projects/asp .net core + react/socialnetwork/Application/Application.csproj",
   "expectedPackageFiles": [
@@ -9,6 +9,9 @@
     "/Users/akostoth/.nuget/packages/fluentvalidation.dependencyinjectionextensions/9.1.1/fluentvalidation.dependencyinjectionextensions.9.1.1.nupkg.sha512",
     "/Users/akostoth/.nuget/packages/mediatr/9.0.0/mediatr.9.0.0.nupkg.sha512",
     "/Users/akostoth/.nuget/packages/mediatr.extensions.microsoft.dependencyinjection/9.0.0/mediatr.extensions.microsoft.dependencyinjection.9.0.0.nupkg.sha512",
+    "/Users/akostoth/.nuget/packages/microsoft.aspnetcore.cryptography.internal/3.1.7/microsoft.aspnetcore.cryptography.internal.3.1.7.nupkg.sha512",
+    "/Users/akostoth/.nuget/packages/microsoft.aspnetcore.cryptography.keyderivation/3.1.7/microsoft.aspnetcore.cryptography.keyderivation.3.1.7.nupkg.sha512",
+    "/Users/akostoth/.nuget/packages/microsoft.aspnetcore.identity.entityframeworkcore/3.1.7/microsoft.aspnetcore.identity.entityframeworkcore.3.1.7.nupkg.sha512",
     "/Users/akostoth/.nuget/packages/microsoft.bcl.asyncinterfaces/1.1.1/microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "/Users/akostoth/.nuget/packages/microsoft.bcl.hashcode/1.1.0/microsoft.bcl.hashcode.1.1.0.nupkg.sha512",
     "/Users/akostoth/.nuget/packages/microsoft.data.sqlite.core/3.1.7/microsoft.data.sqlite.core.3.1.7.nupkg.sha512",
@@ -27,6 +30,8 @@
     "/Users/akostoth/.nuget/packages/microsoft.extensions.dependencyinjection/3.1.7/microsoft.extensions.dependencyinjection.3.1.7.nupkg.sha512",
     "/Users/akostoth/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/3.1.7/microsoft.extensions.dependencyinjection.abstractions.3.1.7.nupkg.sha512",
     "/Users/akostoth/.nuget/packages/microsoft.extensions.dependencymodel/3.1.3/microsoft.extensions.dependencymodel.3.1.3.nupkg.sha512",
+    "/Users/akostoth/.nuget/packages/microsoft.extensions.identity.core/3.1.7/microsoft.extensions.identity.core.3.1.7.nupkg.sha512",
+    "/Users/akostoth/.nuget/packages/microsoft.extensions.identity.stores/3.1.7/microsoft.extensions.identity.stores.3.1.7.nupkg.sha512",
     "/Users/akostoth/.nuget/packages/microsoft.extensions.logging/3.1.7/microsoft.extensions.logging.3.1.7.nupkg.sha512",
     "/Users/akostoth/.nuget/packages/microsoft.extensions.logging.abstractions/3.1.7/microsoft.extensions.logging.abstractions.3.1.7.nupkg.sha512",
     "/Users/akostoth/.nuget/packages/microsoft.extensions.options/3.1.7/microsoft.extensions.options.3.1.7.nupkg.sha512",

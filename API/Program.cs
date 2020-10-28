@@ -1,5 +1,7 @@
 using System;
+using Domain;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -18,8 +20,9 @@ namespace API
             
                 try{
                     var context = scope.ServiceProvider.GetRequiredService<DataContext>();
+                    var userManager = scope.ServiceProvider.GetRequiredService<UserManager<AppUser>>();
                     context.Database.Migrate();
-                    Seed.SeedData(context);
+                    Seed.SeedData(context, userManager).Wait();
                }
                 catch(Exception e){
                     var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
