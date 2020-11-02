@@ -2,10 +2,13 @@ import React, { Fragment, useContext } from "react";
 import { Link } from "react-router-dom";
 import { Button, Container, Header, Segment, Image } from "semantic-ui-react";
 import { RootStoreContext } from "../../app/stores/rootStore";
+import LoginForm from "../User/LoginForm";
+import RegisterForm from "../User/RegisterForm";
 
 const HomePage = () => {
   const rootStore = useContext(RootStoreContext);
   const { LoggedIn, user } = rootStore.userStore;
+  const {openModal} = rootStore.modalStore;
 
   return (
     <Segment inverted textAlign="center" vertical className="masthead">
@@ -33,10 +36,10 @@ const HomePage = () => {
         ) : (
           <Fragment>
             <Header as="h2" inverted content="Welcome to DummyNetwork" />
-            <Button as={Link} to="/login" size="huge" inverted>
+            <Button onClick={()=> openModal(<LoginForm/>)} size="huge" inverted>
               Login
             </Button>
-            <Button as={Link} to="/register" size="huge" inverted>
+            <Button onClick={()=> openModal(<RegisterForm/>)} size="huge" inverted>
               Register
             </Button>
           </Fragment>

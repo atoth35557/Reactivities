@@ -13,8 +13,8 @@ export default class CommonStore {
       token => {
         if(token) {
           window.localStorage.setItem('jwt', token);
-        } else {
-          window.localStorage.removeItem('jwn');
+        } else {  
+          window.localStorage.removeItem('jwt');
         }
       }
     )

@@ -12,16 +12,18 @@ import ErrorMessage from "../../app/common/form/ErrorMessage";
 const validator = combineValidators({
   email: isRequired("email"),
   password: isRequired("password"),
+  displayName: isRequired("displayName"),
+  username: isRequired("username"),
 });
 
-const LoginForm = () => {
+const RegisterForm = () => {
   const rootStore = useContext(RootStoreContext);
-  const { login } = rootStore.userStore;
+  const { register } = rootStore.userStore;
 
   return (
     <FinalForm
       onSubmit={(values: IUserFormValues) =>
-        login(values).catch((error) => ({
+        register(values).catch((error) => ({
           [FORM_ERROR]: error,
         }))
       }
@@ -35,7 +37,13 @@ const LoginForm = () => {
         dirtySinceLastSubmit,
       }) => (
         <Form onSubmit={handleSubmit} error>
-          <Header as="h2" content="Sign in" color="teal" textAlign="center" />
+          <Header as="h2" content="Sign up" color="teal" textAlign="center" />
+          <Field name="username" component={TextInput} placeholder="Username" />
+          <Field
+            name="displayName"
+            component={TextInput}
+            placeholder="Display Name"
+          />
           <Field name="email" component={TextInput} placeholder="Email" />
           <Field
             name="password"
@@ -46,13 +54,12 @@ const LoginForm = () => {
           {submitError && !dirtySinceLastSubmit && (
             <ErrorMessage
               error={submitError}
-              text="Invalid email address or password"
             />
           )}
           <Button
             disabled={(invalid && !dirtySinceLastSubmit) || pristine}
             loading={submitting}
-            content="Login"
+            content="Register"
             fluid
             color="teal"
           />
@@ -62,4 +69,4 @@ const LoginForm = () => {
   );
 };
 
-export default observer(LoginForm);
+export default observer(RegisterForm);
