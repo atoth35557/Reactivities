@@ -63,6 +63,16 @@ namespace API {
             identityBuilder
                 .AddEntityFrameworkStores<DataContext> ()
                 .AddSignInManager<SignInManager<AppUser>> ();
+
+            services.AddAuthorization(ops => {
+                ops.AddPolicy("IsActivityHost", policy => {
+                    policy.Requirements.Add(new IsHostRequirement());
+                });
+            });
+
+            services.AddTransient<IAuthorizationHandler,IsHostRequirementHandler>();
+            
+            
             var key = new SymmetricSecurityKey (Encoding.UTF8.GetBytes (Configuration["TokenKey"]));
             services.AddAuthentication (JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer (opt =>
