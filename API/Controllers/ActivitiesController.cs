@@ -34,6 +34,11 @@ namespace API.Controllers {
             return await Mediator.Send (new Attend.Command{Id = id});
         }
 
+        [HttpDelete ("{id}/attend")]
+        public async Task<ActionResult<Unit>> CancelAttendence (Guid id) {
+            return await Mediator.Send (new CancelAttendance.Command{Id = id});
+        }
+
         [HttpPut ("{id}")]
         public async Task<ActionResult<Unit>> Edit (Guid id, Edit.Command command) {
             command.Id = id;
