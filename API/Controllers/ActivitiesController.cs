@@ -11,13 +11,13 @@ namespace API.Controllers {
     public class ActivitiesController : BaseController {
         
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Activity>>> GetActivity () {
+        public async Task<ActionResult<IEnumerable<ActivityDto>>> GetActivity () {
             return await Mediator.Send (new List.Query ());
         }
 
         [HttpGet ("{id}")]
         [Authorize]
-        public async Task<ActionResult<Activity>> GetActivity (Guid id) {
+        public async Task<ActionResult<ActivityDto>> GetActivity (Guid id) {
             return await Mediator.Send (new Detail.Query { Id = id });
         }
 

@@ -1,7 +1,8 @@
 using System.Text;
-using API.Middleware;
 using Application.Activities;
 using Application.Interfaces;
+using API.Middleware;
+using AutoMapper;
 using Domain;
 using FluentValidation.AspNetCore;
 using Infrastructure.Interfaces;
@@ -26,13 +27,17 @@ namespace API {
             Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
+        public IConfiguration Configuration {
+            get;
+        }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices (IServiceCollection services) {
             // using Microsoft.EntityFrameworkCore;
-            services.AddDbContext<DataContext> (options =>
-                options.UseSqlite (Configuration.GetConnectionString ("DefaultConnection")));
+            services.AddDbContext<DataContext> (options => {
+                options.UseLazyLoadingProxies ();
+                options.UseSqlite (Configuration.GetConnectionString ("DefaultConnection"));
+            });
             services.AddCors (options => {
                 options.AddPolicy ("CorsPolicy", builder => {
                     builder.WithOrigins ("http://localhost:3000")
@@ -43,36 +48,38 @@ namespace API {
             });
             services.AddMediatR (typeof (List.Handler).Assembly);
 
+            services.AddAutoMapper (typeof (List.Handler));
+
             services.AddControllers (
-                opt => {
-                    var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
-                    opt.Filters.Add(new AuthorizeFilter(policy));
-                }
-            )
+                    opt => {
+                        var policy = new AuthorizationPolicyBuilder ().RequireAuthenticatedUser ().Build ();
+                        opt.Filters.Add (new AuthorizeFilter (policy));
+                    }
+                )
                 .AddFluentValidation (config => config.RegisterValidatorsFromAssemblyContaining<Create> ());
-            
-            var builder = services.AddIdentityCore<AppUser>();
-            var identityBuilder = new IdentityBuilder(builder.UserType, builder.Services);
+
+            var builder = services.AddIdentityCore<AppUser> ();
+            var identityBuilder = new IdentityBuilder (builder.UserType, builder.Services);
             identityBuilder
-                .AddEntityFrameworkStores<DataContext>()
-                .AddSignInManager<SignInManager<AppUser>>();
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["TokenKey"]));
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer(opt=>
-                        opt.TokenValidationParameters = new TokenValidationParameters{
-                            ValidateIssuerSigningKey = true,
+                .AddEntityFrameworkStores<DataContext> ()
+                .AddSignInManager<SignInManager<AppUser>> ();
+            var key = new SymmetricSecurityKey (Encoding.UTF8.GetBytes (Configuration["TokenKey"]));
+            services.AddAuthentication (JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer (opt =>
+                    opt.TokenValidationParameters = new TokenValidationParameters {
+                        ValidateIssuerSigningKey = true,
                             IssuerSigningKey = key,
                             ValidateAudience = false,
                             ValidateIssuer = false
-                        });
-            services.AddScoped<IJwtGenerator,JwtGenerator>();
-            services.AddScoped<IUserAccessor,UserAccessor>();
+                    });
+            services.AddScoped<IJwtGenerator, JwtGenerator> ();
+            services.AddScoped<IUserAccessor, UserAccessor> ();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure (IApplicationBuilder app, IWebHostEnvironment env) {
-           
-           app.UseMiddleware<ErrorHandlingMiddleware>();
+
+            app.UseMiddleware<ErrorHandlingMiddleware> ();
             if (env.IsDevelopment ()) {
                 // app.UseDeveloperExceptionPage ();
             }

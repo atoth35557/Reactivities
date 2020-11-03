@@ -6,6 +6,6 @@ namespace Domain
     public class AppUser : IdentityUser
     {
         public string DisplayName { get; set; }
-        public IEnumerable<UserActivity> UserActivities { get; set; }
+        public virtual IEnumerable<UserActivity> UserActivities { get; set; }
     }
 }
