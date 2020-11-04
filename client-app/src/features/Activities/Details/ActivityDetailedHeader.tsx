@@ -3,24 +3,34 @@ import { observer } from "mobx-react-lite";
 import React from "react";
 import { Link } from "react-router-dom";
 import { Button, Header, Image, Item, Segment } from "semantic-ui-react";
-import { IActivity } from '../../../app/models/activity';
+import { IActivity } from "../../../app/models/activity";
+import { RootStoreContext } from "../../../app/stores/rootStore";
+import { useContext } from "react";
 
 const activityImageStyle = {
-    filter: 'brightness(30%)'
-}
+  filter: "brightness(30%)",
+};
 
 const ActivityImageTextStyle = {
-    position: 'absolute',
-    bottom: '5%',
-    width: '100%',
-    height: 'auto',
-    color: 'white'
-}
-const ActivityDetailedHeader:React.FC<{activity:IActivity}> = ({activity}) => {
+  position: "absolute",
+  bottom: "5%",
+  width: "100%",
+  height: "auto",
+  color: "white",
+};
+const ActivityDetailedHeader: React.FC<{ activity: IActivity }> = ({
+  activity,
+}) => {
+  const rootStore = useContext(RootStoreContext);
+  const { attendActivity, cancelAttendence } = rootStore.activityStore;
   return (
     <Segment.Group>
       <Segment basic attached="top" style={{ padding: "0" }}>
-        <Image style={activityImageStyle} fluid src={`/assets/categoryImages/${activity.category}.jpg`} />
+        <Image
+          style={activityImageStyle}
+          fluid
+          src={`/assets/categoryImages/${activity.category}.jpg`}
+        />
         <Segment basic style={ActivityImageTextStyle}>
           <Item.Group>
             <Item>
@@ -30,7 +40,7 @@ const ActivityDetailedHeader:React.FC<{activity:IActivity}> = ({activity}) => {
                   content={activity.title}
                   style={{ color: "white" }}
                 />
-                <p>{format(activity.date,"eeee do MMMM")}</p>
+                <p>{format(activity.date, "eeee do MMMM")}</p>
                 <p>Hosted by Bob</p>
               </Item.Content>
             </Item>
@@ -38,11 +48,22 @@ const ActivityDetailedHeader:React.FC<{activity:IActivity}> = ({activity}) => {
         </Segment>
       </Segment>
       <Segment clearing attached="bottom">
-        <Button color="teal">Join Activity</Button>
-        <Button>Cancel attendance</Button>
-        <Button as={Link} to={`/manage/${activity.id}`} color="orange" floated="right">
-          Manage event
-        </Button>
+        {activity.isHost ? (
+          <Button
+            as={Link}
+            to={`/manage/${activity.id}`}
+            color="orange"
+            floated="right"
+          >
+            Manage event
+          </Button>
+        ) : activity.isGoing ? (
+          <Button onClick={cancelAttendence}>Cancel attendance</Button>
+        ) : (
+          <Button onClick={attendActivity} color="teal">
+            Join Activity
+          </Button>
+        )}
       </Segment>
     </Segment.Group>
   );

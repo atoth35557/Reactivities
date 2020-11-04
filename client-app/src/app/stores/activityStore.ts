@@ -10,14 +10,13 @@ import { history } from "../..";
 import agent from "../api/agent";
 import { IActivity } from "../models/activity";
 import { toast } from "react-toastify";
-import {RootStore} from "./rootStore";
-
+import { RootStore } from "./rootStore";
+import { setActivityProps, createAttendee } from "../common/util/util";
 
 export default class ActivityStore {
-
   rootStore: RootStore;
 
-  constructor(rootStore:RootStore) {
+  constructor(rootStore: RootStore) {
     this.rootStore = rootStore;
     makeObservable(this);
   }
@@ -108,7 +107,7 @@ export default class ActivityStore {
       try {
         activity = await agent.Activities.details(id);
         runInAction(() => {
-          activity.date = new Date(activity.date);
+          setActivityProps(activity, this.rootStore.userStore.user!);
           this.activity = activity;
           this.activitiesRegistry.set(activity.id, activity);
           this.loadingInitial = false;
@@ -128,11 +127,15 @@ export default class ActivityStore {
 
   @action loadActivities = async () => {
     this.loadingInitial = true;
+    if (this.activitiesRegistry.size > 1) {
+      this.loadingInitial = false;
+      return this.activitiesRegistry;
+    }
     try {
       const activities = await agent.Activities.list();
       runInAction(() => {
         activities.forEach((activity) => {
-          activity.date = new Date(activity.date);
+          setActivityProps(activity, this.rootStore.userStore.user!);
           this.activitiesRegistry.set(activity.id, activity);
         });
       });
@@ -162,6 +165,26 @@ export default class ActivityStore {
       });
       toast.error("Problem submitting data!");
       console.log(error.response);
+    }
+  };
+
+  @action attendActivity = () => {
+    const attendee = createAttendee(this.rootStore.userStore.user!);
+
+    if (this.activity) {
+      this.activity.attendees.push(attendee);
+      this.activity.isGoing = true;
+      this.activitiesRegistry.set(this.activity.id, this.activity);
+    }
+  };
+
+  @action cancelAttendence = () => {
+    if (this.activity) {
+      this.activity.attendees = this.activity.attendees.filter(
+        (a) => a.username !== this.rootStore.userStore.user!.userName
+      );
+      this.activity.isGoing = false;
+      this.activitiesRegistry.set(this.activity.id, this.activity);
     }
   };
 }

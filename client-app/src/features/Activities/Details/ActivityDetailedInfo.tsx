@@ -1,4 +1,5 @@
 import { format } from "date-fns";
+import { observer } from "mobx-react-lite";
 import React from "react";
 import { Grid, Segment, Icon } from "semantic-ui-react";
 import { IActivity } from "../../../app/models/activity";
@@ -43,4 +44,4 @@ const ActivityDetailedInfo: React.FC<{ activity: IActivity }> = ({
   );
 };
 
-export default ActivityDetailedInfo;
+export default observer(ActivityDetailedInfo);
