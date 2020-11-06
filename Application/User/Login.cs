@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Net;
 using System.Net.Mime;
 using System.Threading;
@@ -46,7 +47,7 @@ namespace Application.User {
                         DisplayName = user.DisplayName,
                             Token = _generator.CreateToken(user),
                             UserName = user.UserName,
-                            Image = "Not implemented yet"
+                            Image = user.Photos.FirstOrDefault(p => p.IsMain)?.Url
                     };
                 }
 
