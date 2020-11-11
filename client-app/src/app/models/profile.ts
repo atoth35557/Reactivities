@@ -1,6 +1,6 @@
 export interface IProfile {
-  DisplayName: string;
-  UserName: string;
+  displayName: string;
+  userName: string;
   image: string;
   bio: string;
   photos: IPhoto[];
@@ -8,6 +8,6 @@ export interface IProfile {
 
 export interface IPhoto {
   id: string;
-  Url: string;
+  url: string;
   IsMain: boolean;
 }
