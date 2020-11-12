@@ -3,7 +3,7 @@ import { history } from "../..";
 import { IActivity } from "../models/activity";
 import { toast } from "react-toastify";
 import { IUser, IUserFormValues } from "../models/user";
-import { IProfile } from "../models/profile";
+import { IProfile, IPhoto } from "../models/profile";
 
 axios.defaults.baseURL = "http://localhost:5000/api";
 axios.interceptors.request.use(
@@ -55,6 +55,15 @@ const requests = {
     axios.put(url, body).then(sleep(300)).then(responseBody),
   delete: (url: string) =>
     axios.delete(url).then(sleep(300)).then(responseBody),
+  postForm: (url: string, file: Blob) => {
+    let formData = new FormData();
+    formData.append("File", file);
+    return axios
+      .post(url, formData, {
+        headers: { "Content-type": "multypart/form-data" },
+      })
+      .then(responseBody);
+  },
 };
 
 const Activities = {
@@ -78,6 +87,10 @@ const User = {
 const Profiles = {
   get: (username: string): Promise<IProfile> =>
     requests.get(`/profiles/${username}`),
+  uploadPhoto: (file: Blob): Promise<IPhoto> =>
+    requests.postForm(`/photos`, file),
+  setMain: (id: string) => requests.post(`/photos/${id}/setmain`, {}),
+  deletePhoto: (id: string) => requests.delete(`/photos/${id}`),
 };
 
 export default {

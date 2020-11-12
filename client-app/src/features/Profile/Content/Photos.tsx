@@ -7,8 +7,26 @@ import PhotoUploadWidget from "../../../app/common/photoUpload/PhotoUploadWidget
 
 const Photos = () => {
   const rootStore = useContext(RootStoreContext);
-  const { profile, isCurrentUser } = rootStore.profileStore;
-  const [addPhotoMode, setAddPhotoMode] = useState(true);
+  const {
+    profile,
+    isCurrentUser,
+    uploadPhoto,
+    uploadingPhoto,
+    loading,
+    setMain,
+    deletePhoto,
+  } = rootStore.profileStore;
+  const [addPhotoMode, setAddPhotoMode] = useState(false);
+  const [target, setTarget] = useState<string | undefined>(undefined);
+  const [deleteTarget, setDeleteTarget] = useState<string | undefined>(
+    undefined
+  );
+
+  const handleUploadPhoto = (photo: Blob) => {
+    uploadPhoto(photo).then(() => {
+      setAddPhotoMode(false);
+    });
+  };
   return (
     <Tab.Pane>
       <Grid>
@@ -25,7 +43,10 @@ const Photos = () => {
         </Grid.Column>
         <Grid.Column width={16}>
           {addPhotoMode ? (
-            <PhotoUploadWidget />
+            <PhotoUploadWidget
+              uploadPhoto={handleUploadPhoto}
+              loading={uploadingPhoto}
+            />
           ) : (
             <Card.Group itemsPerRow={4}>
               {profile &&
@@ -45,9 +66,23 @@ const Photos = () => {
                           style={{ borderTopLeftRadius: 0 }}
                           basic
                           positive
+                          loading={loading && target === photo.id}
+                          disabled={photo.isMain}
+                          name={photo.id}
+                          onClick={(e) => {
+                            setMain(photo);
+                            setTarget(e.currentTarget.name);
+                          }}
                           content="Main"
                         />
                         <Button
+                          name={photo.id}
+                          disabled={photo.isMain}
+                          onClick={(e) => {
+                            deletePhoto(photo);
+                            setDeleteTarget(e.currentTarget.name);
+                          }}
+                          loading={loading && deleteTarget === photo.id}
                           style={{ borderTopRightRadius: 0 }}
                           basic
                           negative
