@@ -8,25 +8,19 @@ using Persistence;
 namespace Application.Profiles.Queries {
     public class Details {
         public class Query : IRequest<Profile> {
-            public string UserName { get; set; }
-         }
+            public string UserName {
+                get;
+                set;
+            }
+        }
 
         public class Handler : IRequestHandler<Query, Profile> {
-            private readonly DataContext _context;
-            public Handler (DataContext context) {
-                _context = context;
-
+            private readonly IProfileReader _reader;
+            public Handler (IProfileReader reader) {
+                _reader = reader;
             }
             public async Task<Profile> Handle (Query request, CancellationToken cancellationToken) {
-                var user = await _context.Users.SingleOrDefaultAsync(u => u.UserName == request.UserName);
-
-                return new Profile{
-                    UserName = user.UserName,
-                    DisplayName = user.DisplayName,
-                    Image = user.Photos.FirstOrDefault(p => p.IsMain)?.Url,
-                    Photos = user.Photos,
-                    Bio = user.Bio
-                };
+                return await _reader.ReadProfile(request.UserName);
             }
         }
     }

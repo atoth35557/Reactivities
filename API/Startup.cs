@@ -23,6 +23,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Persistence;
+using Application.Profiles;
 
 namespace API {
     public class Startup {
@@ -100,6 +101,7 @@ namespace API {
                 });
             services.AddScoped<IJwtGenerator, JwtGenerator> ();
             services.AddScoped<IUserAccessor, UserAccessor> ();
+            services.AddScoped<IProfileReader, ProfileReader> ();
             services.AddScoped<IPhotoAccessor, PhotoAccessor> ();
             services.Configure<CloudinarySettings> (Configuration.GetSection ("Cloudenary"));
         }
