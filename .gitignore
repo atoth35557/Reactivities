@@ -54,3 +54,5 @@ obj
 appsettings.json
 *.db
 *.pdb
+*.db-wal 
+*.db-shm
