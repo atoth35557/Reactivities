@@ -46,6 +46,7 @@ namespace API {
                     builder.WithOrigins ("http://localhost:3000")
                         .SetIsOriginAllowedToAllowWildcardSubdomains ()
                         .AllowAnyHeader ()
+                        .AllowCredentials()
                         .AllowAnyMethod ();
                 });
             });

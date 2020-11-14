@@ -67,7 +67,7 @@ const ActivityForm: React.FC<RouteComponentProps<DetailParams>> = ({
 
   const handleFinalFormSubmit = (value: any) => {
     const dateAndTime = combinedDateAndTime(value.date, value.time);
-    const { date, time, ...activity } = value;
+    const { date, time, ...activity } = value; 
     activity.date = dateAndTime;
     if (!activity.id) {
       let newActivity = {
