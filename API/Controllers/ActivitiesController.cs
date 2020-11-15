@@ -11,8 +11,11 @@ namespace API.Controllers {
     public class ActivitiesController : BaseController {
 
         [HttpGet]
-        public async Task<ActionResult<ActivitiesEnvelope>> GetActivities (int? limit, int? offset) {
-            return await Mediator.Send (new List.Query (limit, offset));
+        public async Task<ActionResult<ActivitiesEnvelope>> GetActivities (
+            int? limit, int? offset, bool isGoing, bool isHost, DateTime? startDate
+        ) {
+            return await Mediator.Send (
+                new List.Query (limit, offset, isGoing, isHost, startDate));
         }
 
         [HttpGet ("{id}")]
