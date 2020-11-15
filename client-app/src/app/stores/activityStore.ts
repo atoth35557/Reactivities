@@ -18,6 +18,7 @@ import {
   LogLevel,
 } from "@microsoft/signalr";
 
+const LIMIT = 2;
 export default class ActivityStore {
   rootStore: RootStore;
 
@@ -33,7 +34,16 @@ export default class ActivityStore {
   @observable target = "";
   @observable loading = false;
   @observable.ref hubConnection: HubConnection | null = null;
+  @observable activityCount = 0;
+  @observable page = 0;
 
+  @computed get totalPage() {
+    return Math.ceil(this.activityCount / LIMIT);
+  }
+
+  @action setPage = (page: number) => {
+    this.page = page;
+  };
   @action createHubConnection = (activityId: string) => {
     this.hubConnection = new HubConnectionBuilder()
       .withUrl("http://localhost:5000/chat", {
@@ -186,15 +196,15 @@ export default class ActivityStore {
       return this.activitiesRegistry;
     }
     try {
-      const activities = await agent.Activities.list();
+      const activitiesEnvelope = await agent.Activities.list(LIMIT, this.page);
+      const { activities, activityCount } = activitiesEnvelope;
       runInAction(() => {
         activities.forEach((activity) => {
           setActivityProps(activity, this.rootStore.userStore.user!);
           this.activitiesRegistry.set(activity.id, activity);
         });
-      });
-      runInAction(() => {
         this.loadingInitial = false;
+        this.activityCount = activityCount;
       });
     } catch (error) {
       runInAction(() => {
