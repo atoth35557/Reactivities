@@ -37,7 +37,7 @@ export default class ActivityStore {
   @observable activityCount = 0;
   @observable page = 0;
 
-  @computed get totalPage() {
+  @computed get totalPages() {
     return Math.ceil(this.activityCount / LIMIT);
   }
 
@@ -191,10 +191,6 @@ export default class ActivityStore {
 
   @action loadActivities = async () => {
     this.loadingInitial = true;
-    if (this.activitiesRegistry.size > 1) {
-      this.loadingInitial = false;
-      return this.activitiesRegistry;
-    }
     try {
       const activitiesEnvelope = await agent.Activities.list(LIMIT, this.page);
       const { activities, activityCount } = activitiesEnvelope;
@@ -203,8 +199,8 @@ export default class ActivityStore {
           setActivityProps(activity, this.rootStore.userStore.user!);
           this.activitiesRegistry.set(activity.id, activity);
         });
-        this.loadingInitial = false;
         this.activityCount = activityCount;
+        this.loadingInitial = false;
       });
     } catch (error) {
       runInAction(() => {

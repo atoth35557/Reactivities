@@ -1,3 +1,4 @@
+import { observer } from "mobx-react-lite";
 import React from "react";
 import { Image, List, Popup } from "semantic-ui-react";
 import { IAttendee } from "../../../app/models/activity";
@@ -33,4 +34,4 @@ const ListItemAttendee: React.FC<IProps> = ({ attendees }) => {
   );
 };
 
-export default ListItemAttendee;
+export default observer(ListItemAttendee);

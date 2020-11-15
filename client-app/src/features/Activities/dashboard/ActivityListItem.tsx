@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { IActivity } from "../../../app/models/activity";
 import { format } from "date-fns";
 import ListItemAttendee from "./ListItemAttendee";
+import { observer } from "mobx-react-lite";
 
 const ActivityListItem: React.FC<{ activity: IActivity }> = ({ activity }) => {
   const host = activity.attendees.filter((a) => a.isHost)[0];
@@ -69,4 +70,4 @@ const ActivityListItem: React.FC<{ activity: IActivity }> = ({ activity }) => {
   );
 };
 
-export default ActivityListItem;
+export default observer(ActivityListItem);
