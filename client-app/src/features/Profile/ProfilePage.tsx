@@ -5,7 +5,7 @@ import ProfileContent from "./ProfileContent";
 import { RootStoreContext } from "../../app/stores/rootStore";
 import { RouteComponentProps } from "react-router-dom";
 import { LoadingComponent } from "../../app/layout/LoadingComponent";
-import { observer } from 'mobx-react-lite';
+import { observer } from "mobx-react-lite";
 
 interface RouteParams {
   username: string;
@@ -15,7 +15,16 @@ interface IProps extends RouteComponentProps<RouteParams> {}
 
 const ProfilePage: React.FC<IProps> = ({ match }) => {
   const rootStore = useContext(RootStoreContext);
-  const { loadingProfile, loadProfile, profile } = rootStore.profileStore;
+  const {
+    loadingProfile,
+    loadProfile,
+    profile,
+    isCurrentUser,
+    follow,
+    unfollow,
+    loading,
+    setActiveTab
+  } = rootStore.profileStore;
 
   useEffect(() => {
     loadProfile(match.params.username);
@@ -26,8 +35,14 @@ const ProfilePage: React.FC<IProps> = ({ match }) => {
   return (
     <Grid>
       <Grid.Column width={16}>
-        <ProfileHeader profile={profile!} />
-        <ProfileContent profile={profile!} />
+        <ProfileHeader
+          profile={profile!}
+          isCurrentUser={isCurrentUser}
+          follow={follow}
+          unfollow={unfollow}
+          loading={loading}
+        />
+        <ProfileContent profile={profile!} setActiveTab={setActiveTab}/>
       </Grid.Column>
     </Grid>
   );
