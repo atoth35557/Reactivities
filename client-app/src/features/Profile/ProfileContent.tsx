@@ -5,10 +5,11 @@ import { IProfile } from "../../app/models/profile";
 import Photos from "./Content/Photos";
 import Description from "./Content/Description";
 import ProfileFollowings from "./Content/Followings";
+import Activities from "./Content/Activities";
 
 interface IProps {
   profile: IProfile;
-  setActiveTab: (activeTab:any)=> void;
+  setActiveTab: (activeTab: any) => void;
 }
 
 const panes = [
@@ -16,7 +17,7 @@ const panes = [
   { menuItem: "Photos", render: () => <Photos /> },
   {
     menuItem: "Activities",
-    render: () => <Tab.Pane>Activities content</Tab.Pane>,
+    render: () => <Activities />,
   },
   {
     menuItem: "Followers",
@@ -34,7 +35,7 @@ const ProfileContent: React.FC<IProps> = ({ profile, setActiveTab }) => {
       menu={{ fluid: true, vertical: true }}
       menuPosition="right"
       panes={panes}
-      onTabChange={(e, data)=>setActiveTab(data.activeIndex)}
+      onTabChange={(e, data) => setActiveTab(data.activeIndex)}
     />
   );
 };
