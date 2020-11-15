@@ -1,20 +1,18 @@
-using System.Net;
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using Application.Activities;
 using Application.Activities.UseCase;
-using Domain;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using static Application.Activities.List;
 
 namespace API.Controllers {
     public class ActivitiesController : BaseController {
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ActivityDto>>> GetActivity () {
-            return await Mediator.Send (new List.Query ());
+        public async Task<ActionResult<ActivitiesEnvelope>> GetActivities (int? limit, int? offset) {
+            return await Mediator.Send (new List.Query (limit, offset));
         }
 
         [HttpGet ("{id}")]
@@ -32,23 +30,27 @@ namespace API.Controllers {
 
         [HttpPost ("{id}/attend")]
         public async Task<ActionResult<Unit>> Attend (Guid id) {
-            return await Mediator.Send (new Attend.Command{Id = id});
+            return await Mediator.Send (new Attend.Command {
+                Id = id
+            });
         }
 
         [HttpDelete ("{id}/attend")]
         public async Task<ActionResult<Unit>> CancelAttendence (Guid id) {
-            return await Mediator.Send (new CancelAttendance.Command{Id = id});
+            return await Mediator.Send (new CancelAttendance.Command {
+                Id = id
+            });
         }
 
         [HttpPut ("{id}")]
-        [Authorize(Policy = "IsActivityHost")]
+        [Authorize (Policy = "IsActivityHost")]
         public async Task<ActionResult<Unit>> Edit (Guid id, Edit.Command command) {
             command.Id = id;
             return await Mediator.Send (command);
         }
 
         [HttpDelete ("{id}")]
-        [Authorize(Policy = "IsActivityHost")]
+        [Authorize (Policy = "IsActivityHost")]
         public async Task<ActionResult<Unit>> Delete (Guid id) {
             return await Mediator.Send (new Delete.Command {
                 Id = id
