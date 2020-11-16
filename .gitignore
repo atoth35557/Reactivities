@@ -50,6 +50,7 @@ Thumbs.db
 
 bin
 obj
+.vs
 .vscode
 appsettings.json
 *.db
