@@ -24,6 +24,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Persistence;
 using Application.Profiles;
+using System;
 
 namespace API {
     public class Startup {
@@ -48,6 +49,7 @@ namespace API {
                         .SetIsOriginAllowedToAllowWildcardSubdomains ()
                         .AllowAnyHeader ()
                         .AllowCredentials()
+                        .WithExposedHeaders("WWW-Authenticate")
                         .AllowAnyMethod ();
                 });
             });
@@ -86,7 +88,9 @@ namespace API {
                     ValidateIssuerSigningKey = true,
                     IssuerSigningKey = key,
                     ValidateAudience = false,
-                    ValidateIssuer = false
+                    ValidateIssuer = false,
+                    ValidateLifetime = true,
+                    ClockSkew = TimeSpan.Zero
                     };
                     opt.Events = new JwtBearerEvents {
                         OnMessageReceived = context => {

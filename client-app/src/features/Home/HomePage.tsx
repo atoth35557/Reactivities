@@ -6,6 +6,7 @@ import LoginForm from "../User/LoginForm";
 import RegisterForm from "../User/RegisterForm";
 
 const HomePage = () => {
+  const token = window.localStorage.getItem("jwt");
   const rootStore = useContext(RootStoreContext);
   const { LoggedIn, user } = rootStore.userStore;
   const {openModal} = rootStore.modalStore;
@@ -22,7 +23,7 @@ const HomePage = () => {
           />
           DummyNetwork
         </Header>
-        {LoggedIn && user ? (
+        {LoggedIn && user && token ? (
           <Fragment>
             <Header
               as="h2"
