@@ -89,7 +89,7 @@ export default class ActivityStore {
       .then(() => console.log(this.hubConnection!.state))
       .then(() => {
         console.log("attemting join group");
-        this.hubConnection?.invoke("AddToGroup", activityId);
+        this.hubConnection!.invoke("AddToGroup", activityId);
       })
       .catch((error) => console.log("Error establishing connection: ", error));
 
@@ -98,20 +98,10 @@ export default class ActivityStore {
         this.activity!.comments.push(comment);
       });
     });
-
-    this.hubConnection.on("Send", (message) => {
-      toast.info(message);
-    });
   };
 
   @action stopHubConnection = () => {
-    this.hubConnection
-      ?.invoke("RemoveFromGroup", this.activity?.id)
-      .then(() => {
-        this.hubConnection!.stop();
-      })
-      .then(() => console.log("Connection was stopped"))
-      .catch((error) => console.log(error));
+    this.hubConnection!.stop();
   };
 
   @action addComment = async (values: any) => {
