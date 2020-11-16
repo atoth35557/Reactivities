@@ -1,9 +1,0 @@
-/Users/akostoth/Projects/asp .net core + react/socialnetwork/Domain/bin/Debug/netstandard2.1/Domain.deps.json
-/Users/akostoth/Projects/asp .net core + react/socialnetwork/Domain/bin/Debug/netstandard2.1/Domain.dll
-/Users/akostoth/Projects/asp .net core + react/socialnetwork/Domain/bin/Debug/netstandard2.1/Domain.pdb
-/Users/akostoth/Projects/asp .net core + react/socialnetwork/Domain/obj/Debug/netstandard2.1/Domain.csprojAssemblyReference.cache
-/Users/akostoth/Projects/asp .net core + react/socialnetwork/Domain/obj/Debug/netstandard2.1/Domain.AssemblyInfoInputs.cache
-/Users/akostoth/Projects/asp .net core + react/socialnetwork/Domain/obj/Debug/netstandard2.1/Domain.AssemblyInfo.cs
-/Users/akostoth/Projects/asp .net core + react/socialnetwork/Domain/obj/Debug/netstandard2.1/Domain.csproj.CoreCompileInputs.cache
-/Users/akostoth/Projects/asp .net core + react/socialnetwork/Domain/obj/Debug/netstandard2.1/Domain.dll
-/Users/akostoth/Projects/asp .net core + react/socialnetwork/Domain/obj/Debug/netstandard2.1/Domain.pdb
