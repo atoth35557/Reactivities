@@ -1,4 +1,5 @@
 using Domain;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -69,13 +70,23 @@ namespace Persistence {
                 b.HasOne (f => f.Observer)
                     .WithMany (f => f.Followings)
                     .HasForeignKey (f => f.ObserverId)
-                    .OnDelete(DeleteBehavior.Restrict);
-               
+                    .OnDelete (DeleteBehavior.Restrict);
+
                 b.HasOne (f => f.Target)
                     .WithMany (f => f.Followers)
                     .HasForeignKey (f => f.TargetId)
-                    .OnDelete(DeleteBehavior.Restrict);
+                    .OnDelete (DeleteBehavior.Restrict);
             });
+            builder.Entity<AppUser> (entity => entity.Property (m => m.NormalizedEmail).HasMaxLength (200));
+            builder.Entity<AppUser> (entity => entity.Property (m => m.NormalizedUserName).HasMaxLength (200));
+            builder.Entity<IdentityRole> (entity => entity.Property (m => m.NormalizedName).HasMaxLength (200));
+            builder.Entity<IdentityUserLogin<string>> (entity => entity.Property (m => m.UserId).HasMaxLength (200));
+            builder.Entity<IdentityUserRole<string>> (entity => entity.Property (m => m.UserId).HasMaxLength (200));
+            builder.Entity<IdentityUserRole<string>> (entity => entity.Property (m => m.RoleId).HasMaxLength (200));
+            builder.Entity<IdentityUserToken<string>> (entity => entity.Property (m => m.UserId).HasMaxLength (200));
+            builder.Entity<IdentityUserClaim<string>> (entity => entity.Property (m => m.UserId).HasMaxLength (200));
+            builder.Entity<IdentityRoleClaim<string>> (entity => entity.Property (m => m.RoleId).HasMaxLength (200));
+
         }
     }
 }

@@ -1,7 +1,9 @@
+using System;
 using System.Text;
 using System.Threading.Tasks;
 using Application.Activities;
 using Application.Interfaces;
+using Application.Profiles;
 using API.Middleware;
 using API.SignalR;
 using AutoMapper;
@@ -23,8 +25,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Persistence;
-using Application.Profiles;
-using System;
 
 namespace API {
     public class Startup {
@@ -36,20 +36,30 @@ namespace API {
             get;
         }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices (IServiceCollection services) {
-            // using Microsoft.EntityFrameworkCore;
+        public void ConfigureDevelopmentServices (IServiceCollection services) {
             services.AddDbContext<DataContext> (options => {
                 options.UseLazyLoadingProxies ();
                 options.UseSqlite (Configuration.GetConnectionString ("DefaultConnection"));
             });
+            ConfigureServices(services);
+        }
+        public void ConfigureProductionServices (IServiceCollection services) {
+            services.AddDbContext<DataContext> (options => {
+                options.UseLazyLoadingProxies ();
+                options.UseMySql (Configuration.GetConnectionString ("DefaultConnection"));
+            });
+            ConfigureServices(services);
+        }
+
+        public void ConfigureServices (IServiceCollection services) {
+
             services.AddCors (options => {
                 options.AddPolicy ("CorsPolicy", builder => {
                     builder.WithOrigins ("http://localhost:3000")
                         .SetIsOriginAllowedToAllowWildcardSubdomains ()
                         .AllowAnyHeader ()
-                        .AllowCredentials()
-                        .WithExposedHeaders("WWW-Authenticate")
+                        .AllowCredentials ()
+                        .WithExposedHeaders ("WWW-Authenticate")
                         .AllowAnyMethod ();
                 });
             });
@@ -119,6 +129,8 @@ namespace API {
             }
 
             // app.UseHttpsRedirection();
+            app.UseDefaultFiles ();
+            app.UseStaticFiles ();
 
             app.UseRouting ();
             app.UseCors ("CorsPolicy");
@@ -129,6 +141,7 @@ namespace API {
             app.UseEndpoints (endpoints => {
                 endpoints.MapControllers ();
                 endpoints.MapHub<ChatHub> ("/chat");
+                endpoints.MapFallbackToController ("Index", "Fallback");
             });
         }
     }
