@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Persistence.Migrations
 {
-    public partial class FixKeyMaxLenghtException : Migration
+    public partial class FixDateTime : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -15,7 +15,7 @@ namespace Persistence.Migrations
                     Title = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
                     Category = table.Column<string>(nullable: true),
-                    Date = table.Column<DateTime>(nullable: false),
+                    Date = table.Column<DateTime>(type: "datetime", nullable: false),
                     City = table.Column<string>(nullable: true),
                     Venue = table.Column<string>(nullable: true)
                 },
@@ -28,9 +28,9 @@ namespace Persistence.Migrations
                 name: "AspNetRoles",
                 columns: table => new
                 {
-                    Id = table.Column<string>(maxLength:200,nullable: false),
+                    Id = table.Column<string>(type: "varchar(200)", nullable: false),
                     Name = table.Column<string>(maxLength: 256, nullable: true),
-                    NormalizedName = table.Column<string>(type: "varchar(200)", nullable: true),
+                    NormalizedName = table.Column<string>(type: "varchar(200)", maxLength: 256, nullable: true),
                     ConcurrencyStamp = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -42,11 +42,11 @@ namespace Persistence.Migrations
                 name: "AspNetUsers",
                 columns: table => new
                 {
-                    Id = table.Column<string>(maxLength:200,nullable: false),
+                    Id = table.Column<string>(type: "varchar(200)", nullable: false),
                     UserName = table.Column<string>(maxLength: 256, nullable: true),
-                    NormalizedUserName = table.Column<string>(type: "varchar(200)", nullable: true),
+                    NormalizedUserName = table.Column<string>(type: "varchar(200)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(maxLength: 256, nullable: true),
-                    NormalizedEmail = table.Column<string>(type: "varchar(200)", nullable: true),
+                    NormalizedEmail = table.Column<string>(type: "varchar(200)", maxLength: 256, nullable: true),
                     EmailConfirmed = table.Column<bool>(nullable: false),
                     PasswordHash = table.Column<string>(nullable: true),
                     SecurityStamp = table.Column<string>(nullable: true),
@@ -124,8 +124,8 @@ namespace Persistence.Migrations
                 name: "AspNetUserLogins",
                 columns: table => new
                 {
-                    LoginProvider = table.Column<string>(type: "varchar(200)",nullable: false),
-                    ProviderKey = table.Column<string>(type: "varchar(200)",nullable: false),
+                    LoginProvider = table.Column<string>(type: "varchar(200)", nullable: false),
+                    ProviderKey = table.Column<string>(type: "varchar(200)", nullable: false),
                     ProviderDisplayName = table.Column<string>(nullable: true),
                     UserId = table.Column<string>(type: "varchar(200)", nullable: false)
                 },
@@ -169,8 +169,8 @@ namespace Persistence.Migrations
                 columns: table => new
                 {
                     UserId = table.Column<string>(type: "varchar(200)", nullable: false),
-                    LoginProvider = table.Column<string>(type: "varchar(200)",nullable: false),
-                    Name = table.Column<string>(type: "varchar(200)",nullable: false),
+                    LoginProvider = table.Column<string>(type: "varchar(200)", nullable: false),
+                    Name = table.Column<string>(type: "varchar(200)", nullable: false),
                     Value = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -190,9 +190,9 @@ namespace Persistence.Migrations
                 {
                     Id = table.Column<Guid>(type: "varchar(200)", nullable: false),
                     Body = table.Column<string>(nullable: true),
-                    AuthorId = table.Column<string>(type: "varchar(200)",nullable: true),
-                    ActivityId = table.Column<Guid>(type: "varchar(200)",nullable: true),
-                    CreatedAt = table.Column<DateTime>(nullable: false)
+                    AuthorId = table.Column<string>(type: "varchar(200)", nullable: true),
+                    ActivityId = table.Column<string>(type: "varchar(200)", nullable: true),
+                    CreatedAt = table.Column<DateTime>(type: "datetime", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -261,7 +261,7 @@ namespace Persistence.Migrations
                 {
                     AppUserId = table.Column<string>(type: "varchar(200)", nullable: false),
                     ActivityId = table.Column<Guid>(type: "varchar(200)", nullable: false),
-                    DateJoined = table.Column<DateTime>(nullable: false),
+                    DateJoined = table.Column<DateTime>(type: "datetime", nullable: false),
                     IsHost = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>

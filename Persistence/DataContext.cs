@@ -77,15 +77,21 @@ namespace Persistence {
                     .HasForeignKey (f => f.TargetId)
                     .OnDelete (DeleteBehavior.Restrict);
             });
-            builder.Entity<AppUser> (entity => entity.Property (m => m.NormalizedEmail).HasMaxLength (200));
-            builder.Entity<AppUser> (entity => entity.Property (m => m.NormalizedUserName).HasMaxLength (200));
-            builder.Entity<IdentityRole> (entity => entity.Property (m => m.NormalizedName).HasMaxLength (200));
-            builder.Entity<IdentityUserLogin<string>> (entity => entity.Property (m => m.UserId).HasMaxLength (200));
-            builder.Entity<IdentityUserRole<string>> (entity => entity.Property (m => m.UserId).HasMaxLength (200));
-            builder.Entity<IdentityUserRole<string>> (entity => entity.Property (m => m.RoleId).HasMaxLength (200));
-            builder.Entity<IdentityUserToken<string>> (entity => entity.Property (m => m.UserId).HasMaxLength (200));
-            builder.Entity<IdentityUserClaim<string>> (entity => entity.Property (m => m.UserId).HasMaxLength (200));
-            builder.Entity<IdentityRoleClaim<string>> (entity => entity.Property (m => m.RoleId).HasMaxLength (200));
+            builder.Entity<AppUser> (entity => entity.Property (m => m.Id).HasColumnType("varchar(200)"));
+            builder.Entity<AppUser> (entity => entity.Property (m => m.NormalizedEmail).HasColumnType("varchar(200)"));
+            builder.Entity<AppUser> (entity => entity.Property (m => m.NormalizedUserName).HasColumnType("varchar(200)"));
+            builder.Entity<IdentityRole> (entity => entity.Property (m => m.NormalizedName).HasColumnType("varchar(200)"));
+            builder.Entity<IdentityRole> (entity => entity.Property (m => m.Id).HasColumnType("varchar(200)"));
+            builder.Entity<IdentityUserLogin<string>> (entity => entity.Property (m => m.UserId).HasColumnType("varchar(200)"));
+            builder.Entity<IdentityUserLogin<string>> (entity => entity.Property (m => m.LoginProvider).HasColumnType("varchar(200)"));
+            builder.Entity<IdentityUserLogin<string>> (entity => entity.Property (m => m.ProviderKey).HasColumnType("varchar(200)"));
+            builder.Entity<IdentityUserRole<string>> (entity => entity.Property (m => m.UserId).HasColumnType("varchar(200)"));
+            builder.Entity<IdentityUserRole<string>> (entity => entity.Property (m => m.RoleId).HasColumnType("varchar(200)"));
+            builder.Entity<IdentityUserToken<string>> (entity => entity.Property (m => m.UserId).HasColumnType("varchar(200)"));
+            builder.Entity<IdentityUserToken<string>> (entity => entity.Property (m => m.Name).HasColumnType("varchar(200)"));
+            builder.Entity<IdentityUserToken<string>> (entity => entity.Property (m => m.LoginProvider).HasColumnType("varchar(200)"));
+            builder.Entity<IdentityUserClaim<string>> (entity => entity.Property (m => m.UserId).HasColumnType("varchar(200)"));
+            builder.Entity<IdentityRoleClaim<string>> (entity => entity.Property (m => m.RoleId).HasColumnType("varchar(200)"));
 
         }
     }
